@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data & Fakta - Kampanye Hemat Daya SMK Wikrama</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- Navigasi Utama -->
+    <header class="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Hemat<span class="highlight">Daya</span></span>
+            </a>
+
+            <!-- Tombol Toggle Mobile -->
+            <button class="nav-toggle" id="navToggle" aria-label="Buka Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Beranda</a></li>
+                    <li><a href="tentang.html" class="nav-link">Tentang Kampanye</a></li>
+                    <li><a href="data.html" class="nav-link active">Data & Fakta</a></li>
+                    <li><a href="aksi.html" class="nav-link">Aksi & Rekomendasi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Halaman -->
+    <section class="page-banner">
+        <div class="container">
+            <div class="badge-pill" style="background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.3); margin-bottom: 0.8rem;">
+                <span class="badge-dot"></span> Fase 2: Bukti Nyata Angket Siswa
+            </div>
+            <h1>Data & Fakta Perilaku Energi</h1>
+            <p>Hasil pengolahan angket 636 siswa kelas XI lintas jurusan sebagai landasan kampanye berbasis data nyata.</p>
+        </div>
+    </section>
+
+    <!-- Konten Utama Data & Fakta -->
+    <section class="section">
+        <div class="container">
+
+            <!-- 1. Grid Statistik Utama -->
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-value" id="statRataSkor">3.36 <small>/ 4.00</small></div>
+                    <div class="stat-label">Rata-rata Skor Sekolah</div>
+                    <div class="stat-desc">Kategori <strong>Sangat Baik</strong> (Skala Likert 1–4)</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value" id="statTotalResponden">636 <small>Siswa</small></div>
+                    <div class="stat-label">Jumlah Responden</div>
+                    <div class="stat-desc">Partisipasi <strong>99.4%</strong> dari 639 siswa terdata</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🌱</div>
+                    <div class="stat-value" id="statPersenSering">90.8%</div>
+                    <div class="stat-label">Perilaku Rutin (Sering)</div>
+                    <div class="stat-desc">Rata-rata frekuensi sering/selalu hemat energi</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-value" id="statJurusanTertinggi">PMN <small>(3.51)</small></div>
+                    <div class="stat-label">Jurusan Skor Tertinggi</div>
+                    <div class="stat-desc">Diikuti HTL (3.46) dan KLN (3.43)</div>
+                </div>
+            </div>
+
+            <!-- Catatan Metodologi Singkat -->
+            <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius); padding: 1.2rem 1.6rem; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <span style="font-size: 1.8rem;">ℹ️</span>
+                <div style="flex: 1;">
+                    <strong style="color: var(--primary); font-size: 0.95rem;">Tentang Instrumen Data:</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+                        Kuesioner terdiri dari 10 butir pernyataan (P01–P10) dengan 4 pilihan frekuensi (1 = Sangat Jarang, 4 = Selalu). Data telah melalui pembersihan (94 isian ganda disaring dengan aturan isian terakhir dan 1 baris tidak valid dibuang).
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2. Grid Grafik Analisis -->
+            <div class="chart-grid">
+                
+                <!-- Grafik 1: Butir Pernyataan -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><span>📊</span> Rata-rata Skor per Butir Perilaku (P01–P10)</h3>
+                        <p class="chart-subtitle">Membandingkan tingkat kepedulian siswa pada setiap kebiasaan spesifik</p>
+                    </div>
+                    <div class="chart-wrapper" style="min-height: 380px;">
+                        <canvas id="chartItems"></canvas>
+                    </div>
+                    <div class="insight-box">
+                        <strong>💡 Temuan & Penjelasan Inti:</strong>
+                        Butir P01 (3.51) dan P06 (3.45) menunjukkan kesadaran umum dan kebiasaan mencabut steker sudah sangat baik di atas 92%. Namun, pembatasan pemakaian laptop (P04: 3.22) dan keberanian menegur teman (P09: 3.22) adalah titik terendah yang membutuhkan intervensi edukasi kolektif.
+                    </div>
+                </div>
+
+                <!-- Grafik 2: Perbandingan Jurusan -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><span>🏫</span> Perbandingan Rata-rata Skor Antar Jurusan</h3>
+                        <p class="chart-subtitle">Tingkat kepedulian energi di 7 konsentrasi keahlian SMK Wikrama</p>
+                    </div>
+                    <div class="chart-wrapper" style="min-height: 380px;">
+                        <canvas id="chartMajors"></canvas>
+                    </div>
+                    <div class="insight-box">
+                        <strong>💡 Temuan & Penjelasan Inti:</strong>
+                        Jurusan Pemasaran (PMN: 3.51) dan Perhotelan (HTL: 3.46) memimpin skor berkat budaya tertib operasional ruangan, sedangkan jurusan komputasi intensif seperti PPLG dan MPLB (3.24) memerlukan pendampingan khusus dalam manajemen daya perangkat digital.
+                    </div>
+                </div>
+
+                <!-- Grafik 3: Distribusi Kategori -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><span>🎯</span> Proporsi Kategori Perilaku Siswa</h3>
+                        <p class="chart-subtitle">Pengelompokan 636 responden berdasarkan rentang rata-rata skor</p>
+                    </div>
+                    <div class="chart-wrapper" style="min-height: 320px;">
+                        <canvas id="chartCategory"></canvas>
+                    </div>
+                    <div class="insight-box">
+                        <strong>💡 Temuan & Penjelasan Inti:</strong>
+                        Sebanyak 96.2% siswa sudah berada pada tingkatan "Sangat Baik" (59.4%) dan "Baik" (36.8%), membuktikan budaya peduli lingkungan di sekolah sudah memiliki modal awal yang sangat solid.
+                    </div>
+                </div>
+
+                <!-- Grafik 4: Eksplorasi Interaktif Jurusan -->
+                <div class="chart-card">
+                    <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h3><span>🔍</span> Eksplorasi Butir Berdasarkan Jurusan</h3>
+                            <p class="chart-subtitle">Pilih jurusan untuk membandingkan skor butirnya terhadap rata-rata sekolah</p>
+                        </div>
+                        <select id="majorFilterSelect" class="filter-select">
+                            <option value="ALL">Semua Sekolah (Tolok Ukur)</option>
+                            <option value="PMN">Pemasaran (PMN)</option>
+                            <option value="HTL">Perhotelan (HTL)</option>
+                            <option value="KLN">Kuliner (KLN)</option>
+                            <option value="TJKT">TJKT</option>
+                            <option value="DKV">DKV</option>
+                            <option value="MPLB">MPLB</option>
+                            <option value="PPLG">PPLG</option>
+                        </select>
+                    </div>
+                    <div class="chart-wrapper" style="min-height: 320px;">
+                        <canvas id="chartInteractiveFilter"></canvas>
+                    </div>
+                    <div class="insight-box warning">
+                        <strong>💡 Panduan Analisis Jurusan:</strong>
+                        Bilah gelap menunjukkan skor jurusan terpilih, sedangkan bilah kuning adalah tolok ukur sekolah. Amati butir yang berada di bawah tolok ukur sekolah untuk diprioritaskan saat menyusun aksi kelas.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 3. Tabel Peringkat Rombel (18 Rombel Kelas XI) -->
+            <div class="table-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h3 style="color: var(--primary); font-size: 1.25rem;">📋 Peringkat Rata-rata Skor per Rombel (18 Rombel)</h3>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;">Data agregat perilaku hemat energi seluruh rombel kelas XI</p>
+                    </div>
+                    <span class="badge-status" style="background: #ecfdf5; color: #065f46;">Data Resmi Angket 2026</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Peringkat</th>
+                                <th>Nama Rombel</th>
+                                <th>Jurusan</th>
+                                <th>Responden</th>
+                                <th>Rata-rata Skor</th>
+                                <th>Total Skor (/40)</th>
+                                <th>% Sangat Baik</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rombelTableBody">
+                            <!-- Diisi secara otomatis oleh js/charts.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CTA Menuju Fase 3 (Ajakan Aksi) -->
+            <div class="teaser-card" style="margin-top: 3.5rem; background: linear-gradient(135deg, #0f382c 0%, #1b5e43 100%); color: var(--surface);">
+                <div class="badge-pill" style="background: rgba(255,255,255,0.15); color: var(--accent); margin-bottom: 1rem;">
+                    Langkah Selanjutnya: Fase 3
+                </div>
+                <h2 style="color: var(--surface); margin-bottom: 0.8rem;">Data Sudah Membuktikan. Kini Giliran Kita Bertindak!</h2>
+                <p style="color: #d1e5dc; max-width: 650px; margin: 0 auto 1.8rem auto; font-size: 1rem;">
+                    Mengetahui data saja tidak cukup. Kampanye ini membutuhkan aksi nyata dari setiap siswa untuk mengubah titik lemah (seperti kebiasaan laptop dan keberanian menegur) menjadi kekuatan bersama.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <a href="aksi.html" class="btn btn-accent">Lihat 5 Rekomendasi & Ikuti Aksi 🌱</a>
+                    <a href="tentang.html" class="btn btn-outline">Pelajari Misi Kampanye 📖</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 <strong>Hemat Daya SMK Wikrama Bogor</strong> — Proyek ESD Lintas Mata Pelajaran</p>
+            <p class="footer-meta">PABP • KIK • PP • Matematika • Bahasa Indonesia • Informatika</p>
+        </div>
+    </footer>
+
+    <!-- Script Data & Charts -->
+    <script src="js/data-energi.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+</html>
